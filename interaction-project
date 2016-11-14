@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+            <title>mouseDragged and mouseMoved</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+        function setup() {
+            createCanvas(500, 500);
+            
+            strokeWeight(100); //the brightness off the shape
+
+            
+        }
+            
+
+        function draw() {
+        
+        stroke(random(255), (255), random(255)); //keeps the star flashing
+            fill("green")
+            triangle(mouseX,mouseY+25,mouseX-25,mouseY+25,mouseX+25,mouseY-25); //the coordinates of triangle A
+            fill("black")
+            triangle(mouseX,mouseY-25,mouseX+25,mouseY+25,mouseX-25,mouseY-25); //the coordinates of triangle B
+            fill("green")
+            triangle(mouseX+250,mouseY+25,mouseX+25,mouseY+50,mouseX-50,mouseY-50) //the coodinates of triangle C
+
+        }
+
+
+
+         function mouseDragged() {
+            
+         }
+
+         function mouseMoved() { //the sketch with follow the motion of the mouse
+        stroke(random(255), (255), random(255)); //random outline of the shape
+            fill("green")
+            triangle(mouseX,mouseY+25,mouseX-25,mouseY+25,mouseX+25,mouseY-25); //the coordinates of triangle A
+            fill("black")
+            triangle(mouseX,mouseY-25,mouseX+25,mouseY+25,mouseX-25,mouseY-25); //the coordinates of triangle B
+            fill("green")
+            triangle(mouseX+250,mouseY+25,mouseX+25,mouseY+50,mouseX-50,mouseY-50) //the coodinates of triangle C
+        
+            }
+
+        
+        
+    </script>
+</head>
+
+
+<body> 
+
+</body>
+
+
+</html>
+
+
