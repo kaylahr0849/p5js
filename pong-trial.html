@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+         var ballX;
+        var ballY;
+        var ballSpeedX = 0;
+        var ballSpeedY = 0;
+        var paddleHeight = 30;
+
+        function setup() {
+            createCanvas(800,600);
+            noCursor();
+            ballX = width / 2;
+            ballY = height / 2;
+        }
+
+        function draw() {
+            background(155);
+            //ballSpeedX = constrain(ballSpeedX, -8, 8)
+           // ballSpeedY = constrain(ballSpeedY, -8, 8)
+            text("keep you eye on the ball")
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+        }
+
+        function moveBall() {
+            ballX = ballX + ballSpeedX;
+            ballY = ballY + ballSpeedY;
+
+            console.log("ballSpeedX: " + ballSpeedX + 
+                        ", ballSpeedY: " + ballSpeedY);
+        }
+
+        function checkCollide() {
+            if (ballX < 0 || ballX > width) {
+                ballSpeedX = ballSpeedX * -1;
+                fill("blue") //if the ball touches the sides of the screen,it turns blue
+            }
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;
+                fill("red") //if the ball touches top of the screen,it turns red
+            }
+            
+            
+            if (ballY > height - paddleHeight){ // ball is past goal line vertically
+                if (ballX > mouseX) { // ball is within paddle horizontally
+                    ballSpeedY = ballSpeedY * -1;
+                    fill("green") //if the ball touches the paddle, it turns green
+                }
+                else {
+                    text("GAME OVER!", width / 2, height / 2);
+                    noLoop(); 
+                
+                }
+            }
+        }
+
+        function drawBall() {
+            noStroke();
+            ellipse(ballX, ballY, 20, 20); //orginal ball
+            ellipse(ballY,ballX,20,20); //scam ball that causes you to lose
+            ellipse(ballX,ballX,20,20) //another scam ball that causes you to lose
+        }
+
+        function drawPaddle() {
+            strokeWeight(2);
+            rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);
+        }
+        function mousePressed() {
+            ballSpeedX = 5; //starting speed of the ball when it's pressed
+            ballSpeedY = 5; //starting speed of the ball when it's pressed 
+        }
+    </script>
+</head>keep your eye on the ball!
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/kaylahrodney/p5js/blob/gh-pages/pong-trial.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+</html>
